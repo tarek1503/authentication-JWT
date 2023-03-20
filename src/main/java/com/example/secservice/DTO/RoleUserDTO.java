@@ -1,0 +1,13 @@
+package com.example.secservice.DTO;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class RoleUserDTO {
+    private String roleName;
+    private String email;
+}
