@@ -9,9 +9,9 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
+@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
-public  class SecServiceApplication {
+public class SecServiceApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SecServiceApplication.class, args);
@@ -24,7 +24,7 @@ public  class SecServiceApplication {
         System.out.println(appRoleDTO.getRoleName());
     }*/
 
-   @Bean
+    @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }

@@ -1,6 +1,5 @@
 package com.example.secservice.DAO;
 
-import com.example.secservice.DTO.AppRoleDTO;
 import com.example.secservice.entities.AppRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
