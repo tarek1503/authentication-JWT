@@ -4,8 +4,10 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.example.secservice.DTO.AppRoleDTO;
 import com.example.secservice.DTO.AppUserDTO;
 import com.example.secservice.DTO.RoleUserDTO;
+import com.example.secservice.entities.AppRole;
 import com.example.secservice.entities.AppUser;
 import com.example.secservice.service.AccountServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -58,10 +60,12 @@ public class UserController {
                 DecodedJWT decodedJWT = jwtVerifier.verify(jwt);
                 String username = decodedJWT.getSubject();
                 AppUser appUser = accountService.loadUserByUsername(username);
+                List<String> roles = new ArrayList<>();
+                roles.add(appUser.getRole().getRoleName());
                 String jwtAccessToken= JWT.create()
                         .withSubject(appUser.getUsername()).withExpiresAt(new Date(System.currentTimeMillis()+1*60*1000))
                         .withIssuer(request.getRequestURL().toString())
-                        .withClaim("role",appUser.getRole().getRoleName())
+                        .withClaim("roles",roles)
                         .sign(algorithm);
                 Map<String, String> idToken = new HashMap<>();
                 idToken.put("access-token", jwtAccessToken);
